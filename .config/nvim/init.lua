@@ -8,8 +8,10 @@ require("keymap.fern")
 vim.lsp.set_log_level("debug")
 
 
--- lsp config to enable biome lsp for js server
+-- lsp config import
 local lspconfig = require('lspconfig')
+
+-- ############ JavaScript LSP setup ##########
 
 lspconfig.biome.setup{
   cmd = { "/sbin/biome", "lsp-proxy" },  -- Ensure biome is available in your path
@@ -21,26 +23,34 @@ root_dir = function(fname)
     return vim.fn.finddir('.git', fname .. ';') or vim.fn.findfile('package.json', fname .. ';') or vim.fn.getcwd()
   end
 
--- on_init = function(client)
---    require("notify")("biomeserver_initialized")    
---  end,
-
-  -- Add a fallback message if Biome LSP does not attach
---  on_exit = function(code, signal)
---    if code ~= 0 then
---      require("notify")("errrirr") 
---    else
---      require("notify")("er2")
---    end
---  end
 }
 
+-- ############# Rust LSP setup ##############
+
+
+lspconfig.rust_analyzer.setup({
+    on_attach = on_attach,
+    settings = {
+        ["rust-analyzer"] = {
+            imports = {
+                granularity = {
+                    group = "module",
+                },
+                prefix = "self",
+            },
+            cargo = {
+                buildScripts = {
+                    enable = true,
+                },
+            },
+            procMacro = {
+                enable = true
+            },
+        }
+    }
+})
 
 vim.opt.termguicolors = true
 -- set the eden-fox-theme at start
 vim.cmd("colorscheme duskfox") 
--- disable netrw at the very start of your init.lua
--- vim.g.loaded_netrw = 1
--- vim.g.loaded_netrwPlugin = 1
--- vim.cmd('let g:fern#renderer = "nerdfont"')
 print("hey man just start typing !")
