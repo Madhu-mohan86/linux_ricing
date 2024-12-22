@@ -39,3 +39,8 @@ which -a biome
 
 it should display  as  ` /sbin/biome`
     
+**LSP for rust**
+
+Choose the installation method that suits you 
+
+https://rust-analyzer.github.io/manual.html#manual-installation
