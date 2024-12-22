@@ -2,22 +2,6 @@
 # Linux ricing
 
 Just config folder thats all
-
-
-
-## Installation
-
-Just clone the repo
-
-```bash
-  git clone https://github.com/Madhu-mohan86/linux_ricing.git
-  cd linux_ricing
-  sudo cp -r .config ~/.config
-```
-if there is default config then just delete it with your gut 
-
-
-
     
 ## Installation
 
